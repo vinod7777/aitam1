@@ -30,7 +30,7 @@ export const Stars = (props) => {
 
 export const StarsCanvas = () => {
   return (
-    <div className='fixed w-full h-full inset-0 z-[-1] bg-black'>
+    <div className='absolute w-full h-full inset-0 z-[-3] bg-black'>
       <Canvas
         camera={{ position: [0, 0, 1] }}
         style={{ width: '100%', height: '100%' }}

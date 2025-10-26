@@ -23,7 +23,7 @@ const HomeModel = ({ ...props }) => {
       ref={ref}
       object={scene}
       scale={0} // Start scale at 0 for a smooth scale-in animation
-      position={[0, -3, 0]} // Adjusted position for the larger globe
+      position={[0, -3.25, 0]} // Adjusted position for the larger globe
       rotation={[0, 0, 0]}
       {...props}
     />

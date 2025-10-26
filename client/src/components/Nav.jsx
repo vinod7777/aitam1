@@ -4,6 +4,7 @@ import council from '../assets/council.png';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, Mail, MapPin, Instagram, Linkedin, Youtube } from 'lucide-react';
 import { FaWhatsapp,FaInstagram,FaLinkedin,FaYoutube   } from "react-icons/fa";
+import StarsCanvas from './star';
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,7 @@ export default function Nav() {
   );
 
   const infoPanel = (
-    <div className="hidden md:block w-full md:w-3/5 text-left text-white pr-20 md:pr-0 pl-20 md:pl-0" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="hidden md:block w-full md:w-3/5 text-left text-white pr-20  md:pr-10 pl-20 md:pl-0" style={{ fontFamily: 'Inter, sans-serif' }}>
       <h3 className="text-3xl md:text-2xl font-bold text-cyan-400 mb-3 " style={{ fontFamily: 'Orbitron, sans-serif' }}>Avishkaar Season 3</h3>
       <p className="text-base text-gray-300 mb-5 md:mb-0  leading-relaxed">
         Aavishkar is a 48-hour innovation marathon that challenges bright minds to turn bold ideas into real-world solutions. After two successful seasons, Aavishkar returns bigger and better — now in two phases: a 24-hour online hackathon and an on-campus 48-hour grand finale.
@@ -92,29 +93,26 @@ export default function Nav() {
   return (
     <>
       <nav className="relative z-[60]">
-        <div className="flex justify-between items-center h-24 px-4 md:px-10">
-          {/* Logos */}
-        <div className="flex items-center mt-3 p-4 ml-4 md:ml-10 bg-black rounded-md">
-          <img src={aitamLogo} alt="AITAM Logo" className="h-12 mr-6" />
-          <img src={council} alt="Council Logo" className="h-12 bg-white p-2 rounded-md" />
-        </div>
+        <div className="absolute top-0 left-0 w-full flex justify-between items-center h-24 px-4 md:px-10">
+          <div className="flex items-center mt-3 p-2 md:p-4 bg-black rounded-md">
+            <img src={aitamLogo} alt="AITAM Logo" className="h-10 md:h-12 mr-4 md:mr-6" />
+            <img src={council} alt="Council Logo" className="h-10 md:h-12 bg-white p-2 rounded-md" />
+          </div>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="z-[60] inline-flex items-center justify-center p-2 rounded-md text-cyan-400 hover:text-cyan-300 focus:outline-none drop-shadow-[0_0_3px_theme(colors.cyan.400)]"
+          >
+            <span className="sr-only">Open main menu</span>
+            <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              {isOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
       </nav>
-
-      {/* Hamburger/Close Button - positioned independently */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-9 right-4 md:right-10 z-[60] inline-flex items-center justify-center p-2 rounded-md text-cyan-400 hover:text-cyan-300 focus:outline-none drop-shadow-[0_0_3px_theme(colors.cyan.400)]"
-      >
-        <span className="sr-only">Open main menu</span>
-        <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-          {isOpen ? (
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-          ) : (
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-          )}
-        </svg>
-      </button>
 
       <AnimatePresence>
         {isOpen && (
@@ -125,6 +123,7 @@ export default function Nav() {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className="fixed inset-0 bg-[#020618] bg-opacity-95 z-50 flex flex-col md:flex-row items-center justify-center md:justify-between gap-10 md:gap-0 p-10 md:px-0 overflow-y-auto"
           >
+            <StarsCanvas />
             {navLinks}
             {infoPanel}
           </motion.div>

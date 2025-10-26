@@ -7,12 +7,16 @@
 
 .main-title {
 	color: #ffffff;
-	font-size: 2rem;
+	-webkit-font-smoothing: antialiased;
+	font-family: 'Orbitron', 'Inter', system-ui, sans-serif;
+	
 	letter-spacing: 0.12em;
 	font-weight: 600;
 	margin: 0;
-    font-size: 2rem;
+    
 	text-transform: uppercase;
+	
+	filter: drop-shadow(#22d3ee 0px 0px 7px);
     
 }
 /* blinking caret for typing animation */
@@ -53,7 +57,20 @@
 
 /* Responsive scaling */
 @media (min-width: 1024px) {
-	.main-title { font-size: 7.4rem }
+	
 	.zones-text { font-size: 1.1rem }
 }
 
+.color{
+	color: #22d3ee;
+
+}
+
+.subtitle {
+	font-size: 2.5rem; /* relative size under the big title */
+	
+
+	letter-spacing: 0.12em;
+	
+	font-weight: 600;
+}

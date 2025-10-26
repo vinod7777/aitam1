@@ -13,17 +13,12 @@ const languages = [
   "ਆਵਿਸ਼ਕਾਰ",      // Punjabi
 ];
 
-// The three zone titles to show with typing effect
-const ZONE_WORDS = [
-  { text: 'INNOVATION', color: '#00ffff' },
-  { text: 'TECHNOLOGY', color: '#ff00ff' },
-  { text: 'FUTURE', color: '#00ff00' },
-];
-
 export default function Title() {
   // typed string for the main multilingual title (we'll type & delete each language)
   const [mainTyped, setMainTyped] = useState('');
   // typed string for the zones (kept as before)
+  const [isGlitching, setIsGlitching] = useState(false);
+
   const [typed, setTyped] = useState('');
 
   // Typing + deleting loop for the main languages array
@@ -43,7 +38,11 @@ export default function Title() {
         }
 
         // pause on full word
-        await new Promise(r => setTimeout(r, 900));
+        setIsGlitching(true);
+        await new Promise(r => setTimeout(r, 400)); // Glitch duration
+        if (!mounted) return;
+        setIsGlitching(false);
+        await new Promise(r => setTimeout(r, 500)); // Pause after glitch
 
         // delete
         for (let j = word.length; j >= 0; j--) {
@@ -67,8 +66,8 @@ export default function Title() {
 
   return (
     <div className="title-root">
-      <h1 className="main-title">{mainTyped}<span className='cursor' /></h1>
-
+      <h1 className={`main-title text-4xl md:text-7xl lg:text-8xl ${isGlitching ? 'glitch' : ''}`} data-text={mainTyped}>{mainTyped}<span className='cursor color' /></h1>
+      
      
     </div>
   )
