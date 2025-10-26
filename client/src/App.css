@@ -1,4 +1,157 @@
-.full{
-  width: 100%;
-  height: 100vh;
+/* Title wave + glitch effects */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap');
+
+/* Use Orbitron for display title and Inter for UI/body */
+body {
+	font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
+
+.title {
+	display: inline-block;
+	font-size: 7rem;
+	font-weight: 800;
+	line-height: 1;
+	color: #ffffff;
+	position: relative;
+	letter-spacing: 0.06em;
+	-webkit-font-smoothing: antialiased;
+	font-family: 'Orbitron', 'Inter', system-ui, sans-serif;
+	text-transform: uppercase;
+	/* Neon / stencil-like display: subtle layered glow + light stroke */
+	text-shadow: 0 0 6px rgba(255,255,255,0.06), 0 0 18px rgba(0,255,255,0.03), 0 0 28px rgba(255,0,255,0.02);
+	-webkit-text-stroke: 0.6px rgba(255,255,255,0.06);
+}
+
+/* Outer char: start scattered (via CSS vars) and gather into place */
+.title .char {
+	display: inline-block;
+ 	/* initial scattered transform (from inline CSS vars) */
+ 	transform: translate(var(--x), var(--y)) rotate(var(--r));
+ 	/* run the gather animation once on mount */
+ 	animation: gather 0.9s cubic-bezier(.2,.8,.2,1) forwards;
+ 	animation-delay: calc(var(--i) * 0.04s);
+}
+
+/* Inner character handles the wave and jitter so transforms compose */
+.title .char-inner {
+  display: inline-block;
+  transform-origin: center;
+  animation: wave 1.1s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.08s);
+}
+
+@keyframes wave {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-8px); }
+}
+
+/* Glitch: intensified layered pseudo elements and per-letter jitter */
+.glitch {
+	position: relative;
+}
+.glitch::before,
+.glitch::after {
+	content: attr(data-text);
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	pointer-events: none;
+}
+.glitch::before {
+	/* stronger cyan offset */
+	text-shadow: -3px 0 0 rgba(0,255,255,0.95);
+	color: rgba(0,255,255,0.9);
+	mix-blend-mode: screen;
+	clip: rect(0, 9999px, 0, 0);
+	animation: glitchTop 1.2s infinite steps(4, end);
+}
+.glitch::after {
+	/* stronger magenta offset */
+	text-shadow: 8px 0 0 rgba(255,0,255,0.95);
+	color: rgba(255,0,255,0.9);
+	mix-blend-mode: screen;
+	clip: rect(0, 9999px, 0, 0);
+	animation: glitchBottom 0.9s infinite steps(4, end);
+}
+
+/* Per-letter extra jitter to amplify the glitch (applied to inner element) */
+.title.glitch .char-inner {
+  /* keep the wave animation but add a fast jitter animation */
+  animation: wave 1.1s ease-in-out infinite,
+             charGlitch 0.9s infinite steps(2, end);
+  animation-delay: calc(var(--i) * 0.06s), calc(var(--i) * 0.02s);
+}
+
+@keyframes charGlitch {
+	0% { transform: translateY(0) translateX(0) skewX(0deg); filter: none; }
+	20% { transform: translateY(-2px) translateX(-3px) skewX(-3deg); filter: hue-rotate(-12deg) saturate(1.1); }
+	40% { transform: translateY(1.5px) translateX(3px) skewX(3deg); filter: hue-rotate(18deg) saturate(1.15); }
+	60% { transform: translateY(-1px) translateX(-2px) skewX(-1.5deg); filter: hue-rotate(-6deg) saturate(1.05); }
+	80% { transform: translateY(1px) translateX(2px) skewX(1.5deg); filter: hue-rotate(6deg) saturate(1.08); }
+	100% { transform: translateY(0) translateX(0) skewX(0deg); filter: none; }
+}
+
+/* Gather keyframes: move from the scattered vars into place */
+@keyframes gather {
+	0% { transform: translate(var(--x), var(--y)) rotate(var(--r)); }
+	100% { transform: translate(0, 0) rotate(0); }
+}
+
+@keyframes glitchTop {
+	0% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
+	8% { clip: rect(2px, 9999px, 40px, 0); transform: translate(-6px, -3px) rotate(-0.6deg) scaleX(1.02); }
+	16% { clip: rect(10px, 9999px, 80px, 0); transform: translate(5px, 3px) rotate(0.6deg) scaleX(0.98); }
+	24% { clip: rect(0px, 9999px, 24px, 0); transform: translate(-3px, -1px) rotate(-0.3deg); }
+	36% { clip: rect(30px, 9999px, 120px, 0); transform: translate(7px, 4px) rotate(0.8deg); }
+	48% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
+	100% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
+}
+
+@keyframes glitchBottom {
+	0% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
+	6% { clip: rect(20px, 9999px, 100px, 0); transform: translate(5px, 6px) skewX(4deg); }
+	18% { clip: rect(6px, 9999px, 60px, 0); transform: translate(-7px, -4px) skewX(-5deg); }
+	30% { clip: rect(40px, 9999px, 140px, 0); transform: translate(9px, 5px) rotate(0.6deg); }
+	52% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
+	100% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
+}
+
+/* Small responsive tweak */
+@media (max-width: 640px) {
+	.title { font-size: 2rem; }
+}
+
+/* Container for title + subtitle so they stay visually grouped */
+.title-wrap {
+	display: inline-block;
+	text-align: center;
+}
+
+/* Subtitle that appears after gather+glitch starts */
+.subtitle {
+	font-size: 2.5rem; /* relative size under the big title */
+	
+	-webkit-font-smoothing: antialiased;
+	font-family: 'Orbitron', 'Inter', system-ui, sans-serif;
+	color: rgba(255,255,255,0.92);
+	margin-top: 0.45rem;
+	opacity: 0;
+	transform: translateY(8px) scale(0.98);
+	transition: opacity 360ms cubic-bezier(.2,.8,.2,1), transform 360ms cubic-bezier(.2,.8,.2,1);
+	letter-spacing: 0.12em;
+	text-transform: lowercase;
+	pointer-events: none;
+	font-weight: 600;
+}
+.subtitle.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+	.subtitle { font-size: 0.95rem; }
+}
+
