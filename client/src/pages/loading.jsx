@@ -2,9 +2,9 @@ import { Suspense, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload } from "@react-three/drei";
-import StarsCanvas from "../../components/star.jsx";
-import Model from "../../components/Model.jsx";
-import Title from "../../components/Title.jsx";
+import StarsCanvas from "../components/star.jsx";
+import Model from "../components/Model.jsx";
+import LoadingTitle from "../components/LoadingTitle.jsx";
 
 function Loading() {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ function Loading() {
             <Suspense fallback={null}>
               <ambientLight intensity={0.5} />
               <pointLight position={[10, 10, 10]} intensity={1.5} />
-              <Model />
+              <Model page="loading" />
               <OrbitControls
                 autoRotate
                 autoRotateSpeed={0.5}
@@ -50,7 +50,7 @@ function Loading() {
         </div>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <p className=" z-50">
-           <Title/>
+           <LoadingTitle  />
           </p>
         </div>
       </div>

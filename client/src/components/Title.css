@@ -1,0 +1,59 @@
+.title-root {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.main-title {
+	color: #ffffff;
+	font-size: 2rem;
+	letter-spacing: 0.12em;
+	font-weight: 600;
+	margin: 0;
+    font-size: 2rem;
+	text-transform: uppercase;
+    
+}
+/* blinking caret for typing animation */
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 0.4rem;
+  background: currentColor;
+  vertical-align: middle;
+  animation: blink 1s steps(2, start) infinite;
+  border-radius: 1px;
+}
+
+/* fallback if you prefer a thin vertical border instead of background */
+.cursor--border {
+  width: 0;
+  border-left: 2px solid currentColor;
+  background: transparent;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.zones-text {
+	font-size: 1rem;
+	margin: 0;
+	color: #00ffff;
+	font-weight: 300;
+	letter-spacing: 0.2em;
+}
+
+.dot-sep {
+	color: #ffffff;
+	opacity: 0.9;
+}
+
+/* Responsive scaling */
+@media (min-width: 1024px) {
+	.main-title { font-size: 7.4rem }
+	.zones-text { font-size: 1.1rem }
+}
+

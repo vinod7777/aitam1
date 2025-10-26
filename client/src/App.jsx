@@ -1,9 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-
-import Loading from './assets/pages/loading.jsx'
-import Home from './assets/pages/Home'
+import Loading from './pages/loading.jsx'
+import Home from './pages/Home.jsx'
 import './App.css'
 
 function App() {
