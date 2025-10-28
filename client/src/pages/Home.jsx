@@ -6,30 +6,31 @@ import Hero from '../components/hero.jsx'
 import About from '../components/About.jsx';
 import ProblemStatement from '../components/problem_stmt.jsx';
 import Hackthon from '../components/hackthon.jsx';
+import Techfestgallery from '../components/Techfestgallery.jsx';
+import Oursponsors from '../components/Oursponsor.jsx';
+import OurPartners from '../components/OurPartners.jsx';
+import Questionasked from '../components/questionasked.jsx';
+import JoinUs from '../components/JoinUs.jsx';
+import { F } from 'maath/dist/index-0332b2ed.esm.js';
+import Footer from '../components/footer.jsx';
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function Home() {
-  useLayoutEffect(() => {
-    const smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 1, // Time in seconds for the smoothing effect
-      effects: true, // Look for data-speed and data-lag attributes
-      smoothTouch: 0.1, // Faster smoothing on touch devices
-    });
-
-    return () => smoother.kill();
-  }, []);
+  
 
   return (
-    <div id="smooth-wrapper">
-      <div id="smooth-content">
+    <div className="w-full h-full bg-black overflow-x-hidden">
         <Hero />
         <About />
         <ProblemStatement />
         <Hackthon />
-      </div>
+        <Techfestgallery />
+        <Oursponsors />
+        <OurPartners />
+        <Questionasked />
+        <JoinUs />
+        <Footer />
     </div>
+    
   )
 }

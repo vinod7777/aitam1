@@ -92,7 +92,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="relative z-[60]">
+      <nav className="relative z-[999]">
         <div className="absolute top-0 left-0 w-full flex justify-between items-center h-24 px-4 md:px-10">
           <div className="flex items-center mt-3 p-2 md:p-4 bg-black rounded-md">
             <img src={aitamLogo} alt="AITAM Logo" className="h-10 md:h-12 mr-4 md:mr-6" />

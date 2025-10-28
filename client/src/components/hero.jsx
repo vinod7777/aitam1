@@ -27,8 +27,8 @@ export default function Hero() {
   return (
     <section className="w-full h-screen relative">
       <Nav />
-      <TechParticlesCanvas />
-      <div className="absolute inset-0 z-[-1]">
+      <div className="absolute inset-0 z-10"><TechParticlesCanvas /></div>
+      <div className="absolute inset-0 z-20">
         <Canvas
           camera={{
             position: [0, 0, 5],
@@ -50,7 +50,7 @@ export default function Hero() {
           </Suspense>
         </Canvas>
       </div>
-      <div className="absolute inset-0 flex flex-col items-center translate-y-10 justify-center text-center z-10">
+      <div className="absolute inset-0 flex flex-col items-center translate-y-10 justify-center text-center z-30">
         <div className="z-10 transform ">
           <Title />
         </div>
@@ -81,7 +81,7 @@ export default function Hero() {
             <img src={gfg} alt="gfg" className="w-20 md:w-25 lg:w-32  h-auto bg-white p-2 rounded-md mt-2 " />
           </div>
       </div>
-      <StarsCanvas />
+      <div className="absolute inset-0 z-0"><StarsCanvas /></div>
 
     </section>
   );
