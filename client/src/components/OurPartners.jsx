@@ -8,7 +8,6 @@ import partner4 from '../assets/partner/Flashootlogo.png';
 import partner5 from '../assets/partner/unstop.png';
 
 
-// Placeholder partner logos. Replace with your actual partner logos.
 const allPartners = [
   { name: 'GDG', logo: partner1, type: 'Outreach Partner' },
   { name: 'GFG', logo: partner2, type: 'Outreach Partner' },
@@ -18,7 +17,6 @@ const allPartners = [
   { name: 'Unstop', logo: partner5, type: 'Platform Partner' },
 ];
 
-// Group partners by their type
 const groupedPartners = allPartners.reduce((acc, partner) => {
   if (!acc[partner.type]) {
     acc[partner.type] = [];

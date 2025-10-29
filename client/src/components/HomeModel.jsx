@@ -10,9 +10,9 @@ const HomeModel = ({ ...props }) => {
   useFrame((state, delta) => {
     if (!ref.current) return;
     const currentScale = ref.current.scale.x;
-    // Smoothly animate the scale from its current value to the target
+    
     if (currentScale < targetScale) {
-      const speed = 7; // Animation speed for the home screen model
+      const speed = 7;
       const newScale = currentScale + (targetScale - currentScale) * Math.min(1, delta * speed);
       ref.current.scale.setScalar(newScale);
     }
@@ -22,8 +22,8 @@ const HomeModel = ({ ...props }) => {
     <primitive
       ref={ref}
       object={scene}
-      scale={0} // Start scale at 0 for a smooth scale-in animation
-      position={[0, -3.25, 0]} // Adjusted position for the larger globe
+      scale={0} 
+      position={[0, -3.25, 0]} 
       rotation={[0, 0, 0]}
       {...props}
     />

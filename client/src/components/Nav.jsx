@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import aitamLogo from '../assets/aitam_logo.png';
 import council from '../assets/council.png';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, Mail, MapPin, Instagram, Linkedin, Youtube } from 'lucide-react';
 import { FaWhatsapp,FaInstagram,FaLinkedin,FaYoutube   } from "react-icons/fa";
@@ -8,27 +9,49 @@ import StarsCanvas from './star';
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleLinkClick = (e, to) => {
+    e.preventDefault();
+    setIsOpen(false);
+    setTimeout(() => {
+      navigate(to);
+    }, 500); // This should match the exit animation duration
+  };
 
   const navLinks = (
     <div
       style={{ fontFamily: 'Orbitron, sans-serif' }}
       className="flex flex-col items-start space-y-6 text-2xl md:text-3xl lg:text-4xl  pl-10 md:pl-10"
     >
-      <a href="#home" className="text-white hover:text-cyan-300 transition-colors duration-300 flex items-center group">
+      <Link to="/home" onClick={(e) => handleLinkClick(e, '/home')} className="text-white hover:text-cyan-300 transition-colors duration-300 flex items-center group">
         <span className="mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">-&gt;</span> <span className="nav-link " data-text="Home">Home</span>
-      </a>
-      <a href="#about" className="text-white hover:text-cyan-300 transition-colors duration-300 flex items-center group">
+      </Link>
+      <Link to="/about" onClick={(e) => handleLinkClick(e, '/about')} className="text-white hover:text-cyan-300 transition-colors duration-300 flex items-center group">
         <span className="mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">-&gt;</span> <span className="nav-link" data-text="About">About</span>
-      </a>
-      <a href="#online-track" className="text-white hover:text-cyan-300 transition-colors duration-300 flex items-center group">
+      </Link>
+      <Link to="/online-track" onClick={(e) => handleLinkClick(e, '/online-track')} className="text-white hover:text-cyan-300 transition-colors duration-300 flex items-center group">
         <span className="mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">-&gt;</span> <span className="nav-link" data-text="Online Track">Online Track</span>
-      </a>
-      <a href="#offline-track" className="text-white hover:text-cyan-300 transition-colors duration-300 flex items-center group">
+      </Link>
+      <Link to="/offline-track" onClick={(e) => handleLinkClick(e, '/offline-track')} className="text-white hover:text-cyan-300 transition-colors duration-300 flex items-center group">
         <span className="mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">-&gt;</span> <span className="nav-link" data-text="Offline Track">Offline Track</span>
-      </a>
-      <a href="#team" className="text-white hover:text-cyan-300 transition-colors duration-300 flex items-center group">
+      </Link>
+      <Link to="/team" onClick={(e) => handleLinkClick(e, '/team')} className="text-white hover:text-cyan-300 transition-colors duration-300 flex items-center group">
         <span className="mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">-&gt;</span> <span className="nav-link" data-text="Team">Team</span>
-      </a>
+      </Link>
     </div>
   );
 
@@ -92,8 +115,8 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="relative z-[999]">
-        <div className="absolute top-0 left-0 w-full flex justify-between items-center h-24 px-4 md:px-10">
+      <nav className={`fixed top-0 left-0 w-full z-[999] transition-colors duration-300 ${scrolled ? 'bg-[#020618]' : 'bg-transparent'}`}>
+        <div className="flex justify-between items-center h-24 px-4 md:px-10">
           <div className="flex items-center mt-3 p-2 md:p-4 bg-black rounded-md">
             <img src={aitamLogo} alt="AITAM Logo" className="h-10 md:h-12 mr-4 md:mr-6" />
             <img src={council} alt="Council Logo" className="h-10 md:h-12 bg-white p-2 rounded-md" />
@@ -120,7 +143,7 @@ export default function Nav() {
             initial={{ opacity: 0, y: "-100%" }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
+            transition={{ type: "spring", stiffness: 80, damping: 20, duration: 1.5}}
             className="fixed inset-0 bg-[#020618] bg-opacity-95 z-50 flex flex-col md:flex-row items-center justify-center md:justify-between gap-10 md:gap-0 p-10 md:px-0 overflow-y-auto"
           >
             <StarsCanvas />

@@ -19,7 +19,6 @@ import sponsor15 from '../assets/sponsor/interview-cake.jpg';
 
 
 
-// Placeholder sponsor logos. Replace with your actual sponsor logos.
 const sponsors = [
   { name: 'Sponsor 1', logo: sponsor1 },
   { name: 'Sponsor 2', logo: sponsor2 },

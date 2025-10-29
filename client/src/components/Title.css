@@ -31,7 +31,6 @@
   border-radius: 1px;
 }
 
-/* fallback if you prefer a thin vertical border instead of background */
 .cursor--border {
   width: 0;
   border-left: 2px solid currentColor;
@@ -67,7 +66,7 @@
 }
 
 .subtitle {
-	font-size: 2.5rem; /* relative size under the big title */
+	font-size: 2.5rem; 
 	
 
 	letter-spacing: 0.12em;

@@ -1,17 +1,16 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { fadeIn } from './util/motion';
 
 const Footer = () => {
   const handleContactClick = (type, value) => {
-    // In a real application, you would uncomment the following lines
-    // to handle phone calls and emails.
+  
     if (type === 'tel') {
       console.log(`Calling: ${value}`);
-      // window.location.href = `tel:${value}`;
+    
     } else if (type === 'mailto') {
       console.log(`Emailing: ${value}`);
-      // window.location.href = `mailto:${value}`;
     }
   };
 
@@ -28,12 +27,12 @@ const Footer = () => {
           >
             <h3 className="text-white text-xl font-semibold mb-6 relative after:content-[''] after:absolute after:bottom-[-0.5rem] after:left-0 after:w-[50px] after:h-[2px] after:bg-sky-500">Quick Links</h3>
             <nav className="flex flex-col gap-3">
-              <a href="#" className="text-sm text-slate-400 no-underline transition-colors duration-300 hover:text-sky-500 active:translate-x-1">Home</a>
-              <a href="#" className="text-sm text-slate-400 no-underline transition-colors duration-300 hover:text-sky-500 active:translate-x-1">About Us</a>
-              <a href="#" className="text-sm text-slate-400 no-underline transition-colors duration-300 hover:text-sky-500 active:translate-x-1">Login</a>
-              <a href="#" className="text-sm text-slate-400 no-underline transition-colors duration-300 hover:text-sky-500 active:translate-x-1">Register</a>
-              <a href="#" className="text-sm text-slate-400 no-underline transition-colors duration-300 hover:text-sky-500 active:translate-x-1">Team</a>
-              <a href="#" className="text-sm text-slate-400 no-underline transition-colors duration-300 hover:text-sky-500 active:translate-x-1">Tracks</a>
+              <a href="/home" className="text-sm text-slate-400 no-underline transition-colors duration-300 hover:text-sky-500 active:translate-x-1">Home</a>
+              <a href="/about" className="text-sm text-slate-400 no-underline transition-colors duration-300 hover:text-sky-500 active:translate-x-1">About</a>
+              <a href="/login" className="text-sm text-slate-400 no-underline transition-colors duration-300 hover:text-sky-500 active:translate-x-1">Login</a>
+              <a href="/register" className="text-sm text-slate-400 no-underline transition-colors duration-300 hover:text-sky-500 active:translate-x-1">Register</a>
+              <a href="/team" className="text-sm text-slate-400 no-underline transition-colors duration-300 hover:text-sky-500 active:translate-x-1">Team</a>
+              <a href="/online-track" className="text-sm text-slate-400 no-underline transition-colors duration-300 hover:text-sky-500 active:translate-x-1">Tracks</a>
             </nav>
           </motion.div>
 
@@ -133,7 +132,7 @@ const Footer = () => {
 };
 
 export default Footer;
-// Add smooth scrolling for footer links
+
 document.addEventListener('DOMContentLoaded', function() {
   const footerLinks = document.querySelectorAll('.footer-link');
   
@@ -141,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
     link.addEventListener('click', function(e) {
       e.preventDefault();
       
-      // Add a subtle click effect
+      
       this.style.transform = 'translateX(5px)';
       setTimeout(() => {
         this.style.transform = 'translateX(0)';
@@ -151,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Add hover effects for social links
+  
   const socialLinks = document.querySelectorAll('.social-link');
   
   socialLinks.forEach(link => {
@@ -170,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Add click handlers for contact items
+  
   const contactItems = document.querySelectorAll('.contact-item');
   
   contactItems.forEach(item => {
@@ -183,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
       item.addEventListener('click', function() {
         const phoneNumber = text.match(phoneRegex)[0].replace(/\s/g, '');
         console.log(`Calling: ${phoneNumber}`);
-        // In a real application, you might use: window.location.href = `tel:${phoneNumber}`;
+        
       });
     }
     
@@ -192,12 +191,12 @@ document.addEventListener('DOMContentLoaded', function() {
       item.addEventListener('click', function() {
         const email = text.match(emailRegex)[0];
         console.log(`Emailing: ${email}`);
-        // In a real application, you might use: window.location.href = `mailto:${email}`;
+        
       });
     }
   });
 
-  // Add animation on scroll
+  
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -212,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }, observerOptions);
 
-  // Observe footer sections for animation
+  
   const footerSections = document.querySelectorAll('.footer-section');
   footerSections.forEach(section => {
     section.style.opacity = '0';

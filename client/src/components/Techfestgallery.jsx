@@ -1,9 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion';
-import { fadeIn, textVariant } from './util/motion'; // Assuming these are defined in your motion.js
+import { fadeIn, textVariant } from './util/motion'; 
 import tech from '../assets/one-CfajMqrr.webp';
 export default function Techfestgallery() {
-  // Placeholder images - replace these with your actual photo URLs
   const galleryImages = [
     tech,
     tech,
@@ -16,10 +15,9 @@ export default function Techfestgallery() {
     tech,
   ];
 
-  // Function to generate random grid spans for a more dynamic layout
   const getRandomGridSpan = () => {
-    const colSpan = Math.floor(Math.random() * 2) + 1; // 1 or 2 columns
-    const rowSpan = Math.floor(Math.random() * 2) + 1; // 1 or 2 rows
+    const colSpan = Math.floor(Math.random() * 2) + 1; 
+    const rowSpan = Math.floor(Math.random() * 2) + 1; 
     return {
       gridColumnEnd: `span ${colSpan}`,
       gridRowEnd: `span ${rowSpan}`,

@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import pandaAbout from '../assets/panda_about.webp';
 import { staggerContainer, fadeIn } from './util/motion';
 
-const About = () => {
+const AboutUs = () => {
   const stats = [
     { value: '2', label: 'Seasons' },
     { value: '2000+', label: 'Participants' },
@@ -16,7 +16,6 @@ const About = () => {
     offset: ["start end", "end start"]
   });
 
-  // Create parallax effect for the image
   const x = useTransform(scrollYProgress, [0, 1], ['-40%', '20%']);
   const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1.1]);
 
@@ -81,4 +80,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutUs;

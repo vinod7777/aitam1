@@ -1,7 +1,5 @@
-/* Title wave + glitch effects */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap');
 
-/* Use Orbitron for display title and Inter for UI/body */
 body {
 	font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 	-webkit-font-smoothing: antialiased;
@@ -19,22 +17,17 @@ body {
 	-webkit-font-smoothing: antialiased;
 	font-family: 'Orbitron', 'Inter', system-ui, sans-serif;
 	text-transform: uppercase;
-	/* Neon / stencil-like display: subtle layered glow + light stroke */
 	text-shadow: 0 0 6px rgba(255,255,255,0.06), 0 0 18px rgba(0,255,255,0.03), 0 0 28px rgba(255,0,255,0.02);
 	-webkit-text-stroke: 0.6px rgba(255,255,255,0.06);
 }
 
-/* Outer char: start scattered (via CSS vars) and gather into place */
 .title .char {
 	display: inline-block;
- 	/* initial scattered transform (from inline CSS vars) */
  	transform: translate(var(--x), var(--y)) rotate(var(--r));
- 	/* run the gather animation once on mount */
  	animation: gather 0.9s cubic-bezier(.2,.8,.2,1) forwards;
  	animation-delay: calc(var(--i) * 0.04s);
 }
 
-/* Inner character handles the wave and jitter so transforms compose */
 .title .char-inner {
   display: inline-block;
   transform-origin: center;
@@ -47,7 +40,6 @@ body {
 	50% { transform: translateY(-8px); }
 }
 
-/* Glitch: intensified layered pseudo elements and per-letter jitter */
 .glitch {
 	position: relative;
 }
@@ -61,7 +53,6 @@ body {
 	pointer-events: none;
 }
 .glitch::before {
-	/* stronger cyan offset */
 	text-shadow: -3px 0 0 rgba(0,255,255,0.95);
 	color: rgba(0,255,255,0.9);
 	mix-blend-mode: screen;
@@ -69,7 +60,6 @@ body {
 	animation: glitchTop 1.2s infinite steps(4, end);
 }
 .glitch::after {
-	/* stronger magenta offset */
 	text-shadow: 8px 0 0 rgba(255,0,255,0.95);
 	color: rgba(255,0,255,0.9);
 	mix-blend-mode: screen;
@@ -77,9 +67,8 @@ body {
 	animation: glitchBottom 0.9s infinite steps(4, end);
 }
 
-/* Per-letter extra jitter to amplify the glitch (applied to inner element) */
 .title.glitch .char-inner {
-  /* keep the wave animation but add a fast jitter animation */
+
   animation: wave 1.1s ease-in-out infinite,
              charGlitch 0.9s infinite steps(2, end);
   animation-delay: calc(var(--i) * 0.06s), calc(var(--i) * 0.02s);
@@ -94,7 +83,6 @@ body {
 	100% { transform: translateY(0) translateX(0) skewX(0deg); filter: none; }
 }
 
-/* Gather keyframes: move from the scattered vars into place */
 @keyframes gather {
 	0% { transform: translate(var(--x), var(--y)) rotate(var(--r)); }
 	100% { transform: translate(0, 0) rotate(0); }
@@ -119,20 +107,17 @@ body {
 	100% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
 }
 
-/* Small responsive tweak */
 @media (max-width: 640px) {
 	.title { font-size: 2rem; }
 }
 
-/* Container for title + subtitle so they stay visually grouped */
 .title-wrap {
 	display: inline-block;
 	text-align: center;
 }
 
-/* Subtitle that appears after gather+glitch starts */
 .subtitle {
-	font-size: 2.5rem; /* relative size under the big title */
+	font-size: 2.5rem;
 	
 	-webkit-font-smoothing: antialiased;
 	font-family: 'Orbitron', 'Inter', system-ui, sans-serif;

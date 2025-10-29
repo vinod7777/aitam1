@@ -5,10 +5,10 @@ export default function LoadingTitle({ text = ' AVISHKAAR' }) {
 
   const offsets = useMemo(() => {
     return chars.map(() => {
-      const x = Math.round((Math.random() - 0.5) * 5020); // px
-      const y = Math.round((Math.random() - 0.5) * 3020); // px
-      const r = Math.round((Math.random() - 0.5) * 60); // deg
-      return { x, y, r };
+      const x = Math.round((Math.random() - 0.5) * 5020); 
+      const y = Math.round((Math.random() - 0.5) * 3020); 
+      const r = Math.round((Math.random() - 0.5) * 60); 
+            return { x, y, r };
     });
   }, [text]);
 
@@ -17,7 +17,7 @@ export default function LoadingTitle({ text = ' AVISHKAAR' }) {
   useEffect(() => {
     const gatherDuration = 0.9;
     const perCharDelay = 0.04;
-    const total = gatherDuration + perCharDelay * Math.max(0, chars.length - 1) + 0.08; // small buffer
+    const total = gatherDuration + perCharDelay * Math.max(0, chars.length - 1) + 0.08;
     const t = setTimeout(() => setGatherComplete(true), total * 1000);
     return () => clearTimeout(t);
   }, [chars.length]);

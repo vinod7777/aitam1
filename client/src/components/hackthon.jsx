@@ -68,11 +68,10 @@ const CountdownTimer = ({ targetDate }) => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
     return () => clearInterval(interval);
-  }, [targetDate]); // Rerun effect if targetDate changes
+  }, [targetDate]); 
 
   const formatTime = (time) => String(time).padStart(2, '0');
 
-  // If timeLeft is empty (countdown finished), don't render anything.
   if (Object.keys(timeLeft).length === 0) {
     return null;
   }
@@ -99,11 +98,8 @@ const TimelineItem = ({ phase, index }) => {
     offset: ["center end", "start center"]
   });
 
-  // For the mouse-follow spotlight effect
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-
-  // Animate the center dot based on scroll progress
   const dotScale = useTransform(scrollYProgress, [0.4, 0.5, 0.6], [1, 1.5, 1]);
   const dotBoxShadow = useTransform(
     scrollYProgress,
@@ -141,7 +137,7 @@ const TimelineItem = ({ phase, index }) => {
           <motion.div
             className="pointer-events-none absolute -inset-px rounded-lg opacity-0 transition duration-300 group-hover:opacity-100"
             style={{
-              // Merged the two style attributes into one
+           
               zIndex: 15,
               background: useTransform(
                 [mouseX, mouseY],
@@ -204,7 +200,6 @@ const VirtualTimeline = () => {
     offset: ["start end", "end start"]
   });
 
-  // Add a spring for a smoother progress animation
   const pathLength = useSpring(
     useTransform(scrollYProgress, [0.1, 0.8], [0, 1]),
     { stiffness: 400, damping: 90 }
@@ -265,9 +260,9 @@ const VirtualTimeline = () => {
       </motion.h3>
       <div className="relative w-full max-w-6xl mx-auto">
         <div className="absolute left-4 md:left-1/2 top-0 h-full w-1 -ml-[2px]">
-          {/* Background line */}
+       
           <div className="h-full w-full bg-cyan-900/50"></div>
-          {/* Progress line */}
+       
           <motion.div 
             className="absolute top-0 left-0 h-full w-full bg-cyan-400"
             style={{ 
@@ -293,7 +288,7 @@ const PhysicalTimeline = () => {
     offset: ["start end", "end start"]
   });
 
-  // Add a spring for a smoother progress animation
+
   const pathLength = useSpring(
     useTransform(scrollYProgress, [0.1, 0.8], [0, 1]),
     { stiffness: 400, damping: 90 }
@@ -416,8 +411,8 @@ const PhysicalTimeline = () => {
   );
 };
 
-const Hackathon = () => {
-  const [activeTab, setActiveTab] = useState('physical');
+const Hackathon = ({ defaultTab = 'physical' }) => {
+  const [activeTab, setActiveTab] = useState(defaultTab);
   const controls = useAnimation();
 const physicalPrizes = [
     {

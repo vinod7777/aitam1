@@ -42,7 +42,7 @@ export default function Title() {
         await new Promise(r => setTimeout(r, 400)); // Glitch duration
         if (!mounted) return;
         setIsGlitching(false);
-        await new Promise(r => setTimeout(r, 500)); // Pause after glitch
+        await new Promise(r => setTimeout(r, 1000)); // Pause after glitch
 
         // delete
         for (let j = word.length; j >= 0; j--) {

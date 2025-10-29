@@ -10,9 +10,8 @@ const Model = ({ ...props }) => {
   useFrame((state, delta) => {
     if (!ref.current) return;
     const currentScale = ref.current.scale.x;
-    // Smoothly animate the scale from its current value to the target
     if (currentScale < targetScale) {
-      const speed = 4; // Slower on loading
+      const speed = 4; 
       const newScale = currentScale + (targetScale - currentScale) * Math.min(1, delta * speed);
       ref.current.scale.setScalar(newScale);
     }
@@ -22,7 +21,7 @@ const Model = ({ ...props }) => {
     <primitive
       ref={ref}
       object={scene}
-      scale={0} // Start scale at 0 for a smooth scale-in animation
+      scale={0} 
       position={[0, 0, 0]}
       rotation={[0, 0, 0]}
       {...props}

@@ -13,12 +13,12 @@ const TechParticles = (props) => {
     const colorChoices = [new THREE.Color('#00ffff'), new THREE.Color('#ff00ff'), new THREE.Color('#00ff00')];
 
     for (let i = 0; i < numParticles; i++) {
-      // Position
-      particles[i * 3] = (Math.random() - 0.5) * 10; // x
-      particles[i * 3 + 1] = (Math.random() - 0.5) * 10; // y
-      particles[i * 3 + 2] = (Math.random() - 0.5) * 10; // z
+    
+      particles[i * 3] = (Math.random() - 0.5) * 10; 
+      particles[i * 3 + 1] = (Math.random() - 0.5) * 10;
+      particles[i * 3 + 2] = (Math.random() - 0.5) * 10; 
 
-      // Color
+     
       const color = colorChoices[Math.floor(Math.random() * colorChoices.length)];
       colors[i * 3] = color.r;
       colors[i * 3 + 1] = color.g;
